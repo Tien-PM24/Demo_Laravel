@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,9 +30,41 @@ Route::get('/hi',[App\Http\Controllers\HelloController::class,'hello']);
 
 //Route::get('/hello', [HelloController::class, 'hello']);
 
-Route::get('/sum', [App\Http\Controllers\SumController::class, 'index'])->name('sum');
-Route::post('/sum', [App\Http\Controllers\SumController::class, 'calculate'])->name('calculate');
+Route::get('/sum', [App\Http\Controllers\SumController::class, 'index']);
+Route::post('/sum', [App\Http\Controllers\SumController::class, 'calculate']);
 
 
-Route:: get('/', 'AreaofshapeController@computerArea');
-Route:: post('/', 'AreaofshapeController@computerArea');
+//Route:: get('/', 'AreaofshapeController@computerArea');
+//Route:: post('/', 'AreaofshapeController@computerArea');
+
+Route::get('/covid-data', [App\Http\Controllers\CovidController::class, 'index'])->name('covid.data');
+
+
+//use App\Http\Controllers\SignController;
+
+//Route::get('/signup', "SignController@index");
+//Route::post('/signup', "SignController@displayInfor");
+
+use App\Http\Controllers\SignController;
+
+Route::get('/signup', [SignController::class, 'index']);
+Route::post('/signup', [SignController::class, 'displayInfor']);
+
+
+Route::get('/valida', [App\Http\Controllers\ValidationController::class, "showForm"]);
+Route::post('/valida', [App\Http\Controllers\ValidationController::class, "validation"]);
+Route::get('/addproduct', [App\Http\Controllers\ListProductsController::class,"showAddForm"])->name('addproduct');
+Route::post('/addproduct', [App\Http\Controllers\ListProductsController::class,"creatSession"]);
+Route::get('/showproducts', [App\Http\Controllers\ListProductsController::class,"showProduct"])->name('showproducts');
+
+Route::get('/trangchu', [App\Http\Controllers\PageController::class, "getIndex"]);
+
+//Tạo bảng trong 
+
+Route::get('/database', function() {
+    Schema::create('loaisanpham',function($table){
+        $table->increment('id');
+        $table->string('ten',200);
+    });
+    echo "Đã tạo bảng thành công";
+});
