@@ -1,4 +1,6 @@
-    <div id="footer" class="color-div">
+
+
+<div id="footer" class="color-div">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">

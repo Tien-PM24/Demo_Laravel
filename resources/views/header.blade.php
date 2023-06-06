@@ -1,4 +1,5 @@
-    <div id="header">
+
+	<div id="header">
 		<div class="header-top">
 			<div class="container">
 				<div class="pull-left auto-width-left">
@@ -89,20 +90,21 @@
 				<a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text'>Menu</span> <i class="fa fa-bars"></i></a>
 				<div class="visible-xs clearfix"></div>
 				<nav class="main-menu">
-					<ul class="l-inline ov">
-						<li><a href="index.html">Trang chủ</a></li>
-						<li><a href="#">Sản phẩm</a>
-							<ul class="sub-menu">
-								<li><a href="product_type.html">Sản phẩm 1</a></li>
-								<li><a href="product_type.html">Sản phẩm 2</a></li>
-								<li><a href="product_type.html">Sản phẩm 4</a></li>
-							</ul>
-						</li>
-						<li><a href="about.html">Giới thiệu</a></li>
-						<li><a href="contacts.html">Liên hệ</a></li>
-					</ul>
-					<div class="clearfix"></div>
-				</nav>
-			</div> <!-- .container -->
-		</div> <!-- .header-bottom -->
-	</div> <!-- #header -->
+				<ul class="l-inline ov">
+					<li><a href="{{ url('homePage') }}">Trang chủ</a></li>
+					<li>
+						<a>Sản phẩm</a>
+						<ul class="sub-menu">
+							@foreach($loai_sp as $loai)
+								<li><a href="{{ url('/typeProduct/'.$loai->id) }}">{{ $loai->name }}</a></li>
+							@endforeach
+						</ul>
+					</li>
+					<li><a href="{{ url('admin') }}">Admin</a></li>
+				</ul>
+
+				<div class="clearfix"></div>
+			</nav>
+		</div> <!-- .container -->
+	</div> <!-- .header-bottom -->
+</div> <!-- #header -->
