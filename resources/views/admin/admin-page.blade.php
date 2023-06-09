@@ -36,7 +36,7 @@
                 <th scope="col">Unit</th>
                 <th scope="col">New</th>
                 <th scope="col">
-                    <a href="/AdminAdd/" class="btn btn-primary" style="width:80px;">Add</a>
+                    <a href="{{ url('adminAdd') }}" class="btn btn-primary" style="width:80px;">Add</a>
                 </th>
             </tr>
         </thead>
@@ -54,7 +54,7 @@
                 <td>{{$product->new}}</td>
                 <td>
                     <a href='/AdminEdit/{{$product->id}}' type="submit" class="btn btn-warning" style="width:80px;">Edit</a>
-                    <form role="form" action="/AdminEdit/{{$product->id}}" method="post">
+                    <form role="form" action="/admin.AdminEdit/{{$product->id}}" method="post">
                         @csrf
                         <button name="delete" type="submit" class="btn btn-danger" style="width:80px;">Delete</button>
                     </form>

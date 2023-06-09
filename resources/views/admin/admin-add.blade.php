@@ -10,7 +10,7 @@
     <div class="space50">&nbsp;</div>
     @include('error')
     <div class="container">
-        <form action="luan9/" method="post" enctype="multipart/form-data">
+        <form action="{{ url('adminAdd') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="inputName">Name</label>

@@ -54,6 +54,9 @@ class PageController extends Controller
         $sp_khac =Product::where('id_type','<>',$type)->paginate(3);
         return view('typeProduct',compact('sp_theoloai','type_product','sp_khac'));
     }
+    
+
+    //-------------ADMIN---------------
 
     public function getIndexAdmin(){
         $products = Product::all();
@@ -64,8 +67,8 @@ class PageController extends Controller
     }
 
 
-     public function getAdminAdd(){
-            return view('admin.admin-add');
+    public function getAdminAdd(){
+        return view('admin.admin-add');
     }
 
     public function postAdminAdd(Request $request) {
@@ -78,24 +81,24 @@ class PageController extends Controller
             $product->image = $fileName;
         }
     
-    $product->name = $request->inputName;
-    $product->description = $request->inputDescription; 
-    $product->unit_price = $request->inputunitPrice;
-    $product->promotion_price = $request->inputPromotionPrice;
-    $product->unit = $request->inputunit;
-    $product->new = $request->inputNew;
-    $product->id_type = $request->inputType;
-    
-    $product->save();
-    
-    return $this->getIndexAdmin();
-    }
+        $product->name = $request->inputName;
+        $product->description = $request->inputDescription; 
+        $product->unit_price = $request->inputunitPrice;
+        $product->promotion_price = $request->inputPromotionPrice;
+        $product->unit = $request->inputunit;
+        $product->new = $request->inputNew;
+        $product->id_type = $request->inputType;
+        
+        $product->save();
+        
+        return $this->getIndexAdmin();
+        }
 
 							
-    public function getAdminEdit($id)	{
-        $product =Product::find($id);
-        return view('admin.admin-edit')->with('product',$product);
-    }										
+        public function getAdminEdit($id) {
+            $product = Product::find($id);
+            return view('admin.admin-add')->with('product', $product);
+        }                                                   
 
     public function postAdminEdit(Request $request)	{
         $id =$request ->editId;

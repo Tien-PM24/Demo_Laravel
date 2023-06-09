@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
+use App\Http\Controllers\SignController;
+use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,26 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/hi',[App\Http\Controllers\HelloController::class,'hello']);
-Route::get('/sum', [App\Http\Controllers\SumController::class, 'index']);
-Route::post('/sum', [App\Http\Controllers\SumController::class, 'calculate']);
+Route::get('/hi',[HelloController::class,'hello']);
+Route::get('/sum', [SumController::class, 'index']);
+Route::post('/sum', [SumController::class, 'calculate']);
 
 
-Route::get('/covid-data', [App\Http\Controllers\CovidController::class, 'index'])->name('covid.data');
-
-
-
-use App\Http\Controllers\SignController;
+Route::get('/covid-data', [CovidController::class, 'index'])->name('covid.data');
 
 Route::get('/signup', [SignController::class, 'index']);
 Route::post('/signup', [SignController::class, 'displayInfor']);
 
 
-Route::get('/valida', [App\Http\Controllers\ValidationController::class, "showForm"]);
-Route::post('/valida', [App\Http\Controllers\ValidationController::class, "validation"]);
-Route::get('/addproduct', [App\Http\Controllers\ListProductsController::class,"showAddForm"])->name('addproduct');
-Route::post('/addproduct', [App\Http\Controllers\ListProductsController::class,"creatSession"]);
-Route::get('/showproducts', [App\Http\Controllers\ListProductsController::class,"showProduct"])->name('showproducts');
+Route::get('/valida', [ValidationController::class, "showForm"]);
+Route::post('/valida', [ValidationController::class, "validation"]);
+Route::get('/addproduct', [ListProductsController::class,"showAddForm"])->name('addproduct');
+Route::post('/addproduct', [ListProductsController::class,"creatSession"]);
+Route::get('/showproducts', [ListProductsController::class,"showProduct"])->name('showproducts');
 
 //Tạo bảng trong 
 
@@ -45,20 +44,19 @@ Route::get('/database', function() {
 });
 
 
-Route::get('/', [App\Http\Controllers\PageController::class, "getIndex"]);
-Route::get('/homePage', [App\Http\Controllers\PageController::class, "getIndex"]);
+Route::get('/', [PageController::class, "getIndex"]);
+Route::get('/homePage', [PageController::class, "getIndex"]);
 
-Route::get('/typeProduct/{id}', [App\Http\Controllers\PageController::class, 'getLoaiSp']);
+Route::get('/typeProduct/{id}', [PageController::class, 'getLoaiSp']);
 
-Route::get('/detailProduct/{id}', [App\Http\Controllers\PageController::class, 'getDetail']);
+Route::get('/detailProduct/{id}', [PageController::class, 'getDetail'])->name('detailProduct');
 
-
-Route::get('/admin',[App\Http\Controllers\PageController::class,'getIndexAdmin']);
-Route::get('/adminAdd', [App\Http\Controllers\PageController::class, 'getAdminAdd'])->name('admin.add-add');														
-Route::post('/adminAdd', [App\Http\Controllers\PageController::class, 'postAdminAdd'])->name('admin.admin-add');										
-Route::get('/adminEdit/{id}', [App\Http\Controllers\PageController::class, 'getAdminEdit']);												
-Route::post('/adminEdit/{id}', [App\Http\Controllers\PageController::class, 'postAdminEdit']);													
-Route::post('/adminDelete/{id}', [App\Http\Controllers\PageController::class, 'postAdminDelete']);															
+Route::get('/admin',[PageController::class,'getIndexAdmin']);
+Route::get('/adminAdd', [PageController::class, 'getAdminAdd']);											
+Route::post('/adminAdd', [PageController::class, 'postAdminAdd']);									
+Route::get('/adminEdit/{id}', [PageController::class, 'getAdminEdit']);												
+Route::post('/adminEdit/{id}', [PageController::class, 'postAdminEdit']);													
+Route::post('/adminDelete/{id}', [PageController::class, 'postAdminDelete']);															
 
 
 

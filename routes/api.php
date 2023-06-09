@@ -2,7 +2,8 @@
 													
 use Illuminate\Http\Request;													
 use Illuminate\Support\Facades\Route;													
-use App\Http\Controllers\APIController;													
+use App\Http\Controllers\APIController;
+use App\Http\Controllers\API_LazadaController;									
 /*													
 |--------------------------------------------------------------------------													
 | API Routes													
@@ -20,12 +21,14 @@ return $request->user();
 													
 // create api													
 Route::get('/data',[APIController::class,'getProducts']);													
-													
-													
+																									
 													
 Route::get('/get-product/{id}', [APIController::class,'getOneProduct']);													
 Route::post('/add-product',[APIController::class,'addProduct']);													
 Route::delete('/delete-product/{id}',[APIController::class,'deleteProduct']);													
 Route::put('/edit-product/{id}',[APIController::class,'editProduct']);													
 													
-Route::post('/upload-image',[APIController::class,'uploadImage']);													
+Route::post('/upload-image',[APIController::class,'uploadImage']);			
+
+
+Route::get('/lazada',[API_LazadaController::class,'getItems']);
