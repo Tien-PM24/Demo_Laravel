@@ -44,19 +44,29 @@ Route::get('/database', function() {
 });
 
 
-Route::get('/', [PageController::class, "getIndex"]);
-Route::get('/homePage', [PageController::class, "getIndex"]);
+Route::get('/', [PageController::class, 'getIndex']);
+Route::get('/homePage', [PageController::class,'getIndex']);
+Route::get('/detail/{id}', [PageController::class,'getDetail']);
 
-Route::get('/typeProduct/{id}', [PageController::class, 'getLoaiSp']);
+Route::get('/type/{id}', [PageController::class,'getLoaiSp']);
 
-Route::get('/detailProduct/{id}', [PageController::class, 'getDetail'])->name('detailProduct');
-
-Route::get('/admin',[PageController::class,'getIndexAdmin']);
-Route::get('/adminAdd', [PageController::class, 'getAdminAdd']);											
-Route::post('/adminAdd', [PageController::class, 'postAdminAdd']);									
-Route::get('/adminEdit/{id}', [PageController::class, 'getAdminEdit']);												
-Route::post('/adminEdit/{id}', [PageController::class, 'postAdminEdit']);													
-Route::post('/adminDelete/{id}', [PageController::class, 'postAdminDelete']);															
+Route::get('/admin', [PageController::class, 'getIndexAdmin']);												
+														
+Route::get('/admin-add-form', [PageController::class, 'getAdminAdd'])->name('add-product');														
+Route::post('/admin-add-form', [PageController::class, 'postAdminAdd']);												
+Route::get('/admin-edit-form/{id}', [PageController::class, 'getAdminEdit']);
+Route::post('/admin-edit', [PageController::class, 'postAdminEdit']);
+Route::post('/admin-delete/{id}', [PageController::class, 'postAdminDelete'])->name('delete-product');
+Route::post('/admin-export', [PageController::class, 'exportAdminProduct'])->name('export');
+Route::get('/register', function () {return view('users.register');});
+Route::post('/register',[App\Http\Controllers\UserController::class,'Register']);						
+Route::get('/login', function () { return view('users.login');});	
+Route::post('/login',[App\Http\Controllers\UserController::class,'login']);	
+Route::get('/logout',[App\Http\Controllers\UserController::class,'logout']);	
+Route::get('add-to-cart/{id}', [App\Http\Controllers\PageController::class, 'getAddToCart'])->name('themgiohang');												
+Route::get('del-cart/{id}', [App\Http\Controllers\PageController::class, 'getDelItemCart'])->name('xoagiohang');												
+                    
+														
 
 
 

@@ -11,17 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        {
-            Schema::rename('t_lazada', 't_lazadas');
-        }
-
+        Schema::table('t_lazadas', function (Blueprint $table) {
+            $table->dropColumn('shop-owner');
+        });         
+        
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        //
+        Schema::table('t_lazadas', function (Blueprint $table) {
+            $table->string('shop-owner');
+        });
     }
+
 };
